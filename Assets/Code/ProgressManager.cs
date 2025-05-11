@@ -48,7 +48,8 @@ public class ProgressManager : MonoBehaviour
     void OpenGate(int index)
     {
         gates[index].SetActive(false);
-        SceneManager.LoadScene($"Stage{index + 1}");
+        SceneManager.LoadScene($"Mission{index + 1}");
+
     }
 
     public void ReturnFromStage()
