@@ -13,6 +13,8 @@ public class SimpleSocket : MonoBehaviour
 
             Rigidbody rb = other.GetComponent<Rigidbody>();
             if (rb != null) rb.isKinematic = true;
+
+
         }
     }
 }

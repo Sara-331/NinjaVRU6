@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Kunai
+  - door
   layers:
   - Default
   - TransparentFX

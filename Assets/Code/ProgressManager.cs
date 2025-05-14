@@ -35,7 +35,7 @@ public class ProgressManager : MonoBehaviour
 
         if (IsKeyInFinalSocket())
         {
-            finalGate.SetActive(false);
+            finalGate.SetActive(true);
         }
     }
 
@@ -49,7 +49,6 @@ public class ProgressManager : MonoBehaviour
     {
         gates[index].SetActive(false);
         SceneManager.LoadScene($"Mission{index + 1}");
-
     }
 
     public void ReturnFromStage()

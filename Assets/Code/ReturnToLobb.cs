@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ReturnToLobby : MonoBehaviour
 {
-    public ProgressManager progressManager; // هذا الكود احطه جوا المرحلة كنقطة عودة للوبي في حال لمسه اللاعب 
+    public ProgressManager progressManager;
 
     void OnTriggerEnter(Collider other)
     {
