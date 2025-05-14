@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class ProgressManager : MonoBehaviour
 {
+    public static ProgressManager instance;
+
     public GameObject[] gates;
     public GameObject[] kunais;
     public Transform[] sockets;
@@ -12,7 +14,20 @@ public class ProgressManager : MonoBehaviour
     public GameObject finalKey;
     public Transform finalKeySocket;
 
-    private void Start()
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Start()
     {
         UpdateKunaisVisibility();
         finalKey.SetActive(false);
@@ -35,7 +50,7 @@ public class ProgressManager : MonoBehaviour
 
         if (IsKeyInFinalSocket())
         {
-            finalGate.SetActive(true);
+            finalGate.SetActive(false);
         }
     }
 
@@ -48,7 +63,7 @@ public class ProgressManager : MonoBehaviour
     void OpenGate(int index)
     {
         gates[index].SetActive(false);
-        SceneManager.LoadScene($"Mission{index + 1}");
+        SceneManager.LoadScene(index + 1);
     }
 
     public void ReturnFromStage()
@@ -61,7 +76,7 @@ public class ProgressManager : MonoBehaviour
     {
         for (int i = 0; i < kunais.Length; i++)
         {
-            kunais[i].SetActive(i == currentStage);
+            kunais[i].SetActive(i <= currentStage);
         }
     }
 
