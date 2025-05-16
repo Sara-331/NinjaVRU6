@@ -7,12 +7,10 @@ public class ProgressManager : MonoBehaviour
 
     public GameObject[] gates;
     public GameObject[] kunais;
-    public Transform[] sockets;
     public int currentStage = 0;
 
     public GameObject finalGate;
     public GameObject finalKey;
-    public Transform finalKeySocket;
 
     void Awake()
     {
@@ -29,41 +27,15 @@ public class ProgressManager : MonoBehaviour
 
     void Start()
     {
-        UpdateKunaisVisibility();
-        finalKey.SetActive(false);
+        UpdateProgress();
     }
 
     void Update()
     {
-        for (int i = 0; i < gates.Length; i++)
-        {
-            if (i == currentStage && IsCorrectKunaiInSocket(i))
-            {
-                OpenGate(i);
-            }
-        }
-
-        if (currentStage >= 3 && !finalKey.activeSelf)
+        if (currentStage >= 2 && finalKey != null && !finalKey.activeSelf)
         {
             finalKey.SetActive(true);
         }
-
-        if (IsKeyInFinalSocket())
-        {
-            finalGate.SetActive(false);
-        }
-    }
-
-    bool IsCorrectKunaiInSocket(int index)
-    {
-        if (sockets[index].childCount == 0) return false;
-        return sockets[index].GetChild(0).gameObject == kunais[index];
-    }
-
-    void OpenGate(int index)
-    {
-        gates[index].SetActive(false);
-        SceneManager.LoadScene(index + 1);
     }
 
     public void ReturnFromStage()
@@ -72,17 +44,34 @@ public class ProgressManager : MonoBehaviour
         SceneManager.LoadScene("Lobby");
     }
 
-    void UpdateKunaisVisibility()
+    public void UpdateProgress()
     {
-        for (int i = 0; i < kunais.Length; i++)
+        foreach (var gate in gates)
         {
-            kunais[i].SetActive(i <= currentStage);
+            gate.SetActive(true);
         }
-    }
 
-    bool IsKeyInFinalSocket()
-    {
-        if (finalKeySocket.childCount == 0) return false;
-        return finalKeySocket.GetChild(0).gameObject == finalKey;
+        if (currentStage < gates.Length)
+        {
+            gates[currentStage].SetActive(false);
+        }
+
+        kunais[0].SetActive(true);
+
+        if (currentStage >= 1)
+        {
+            kunais[1].SetActive(true);
+            kunais[2].SetActive(true);
+        }
+        else
+        {
+            kunais[1].SetActive(false);
+            kunais[2].SetActive(false);
+        }
+
+        if (finalKey != null)
+        {
+            finalKey.SetActive(currentStage >= 2);
+        }
     }
 }
