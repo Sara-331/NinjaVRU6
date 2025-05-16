@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Kunai
   - door
+  - Light
   layers:
   - Default
   - TransparentFX
