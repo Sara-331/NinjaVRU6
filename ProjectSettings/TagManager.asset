@@ -7,11 +7,12 @@ TagManager:
   - Kunai
   - door
   - Light
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Overlay UI
   - Water
   - UI
   - 

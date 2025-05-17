@@ -1,6 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EnemyPatrolAndSight : MonoBehaviour
 {
@@ -8,64 +8,79 @@ public class EnemyPatrolAndSight : MonoBehaviour
     public float speed = 2f;
     public Transform player;
     public float detectionRange = 2f;
-
-    public GameObject alertUI;      
-    public Slider alertSlider;      
-
-    private float detectionTimer = 0f;
     public float timeToCatch = 5f;
-
+    public GameObject blackoutUI;
     public AudioSource catchSound;
+    public Image fillImage; 
 
     private int currentPoint = 0;
+    private float detectionTimer = 0f;
     private bool playerInRange = false;
+    private bool isLosing = false;
 
     void Start()
     {
-        if (alertUI != null)
-            alertUI.SetActive(false);
+        if (blackoutUI != null)
+        {
+            blackoutUI.SetActive(false);
+            blackoutUI.transform.SetParent(Camera.main.transform);
+            blackoutUI.transform.localPosition = new Vector3(0, 0, 2);
+            blackoutUI.transform.localRotation = Quaternion.identity;
+        }
+
+        if (fillImage != null)
+            fillImage.fillAmount = 0f;
     }
 
     void Update()
     {
-        Patrol();
-        DetectPlayer();
+        PatrolAndDetect();
     }
 
-    void DetectPlayer()
+    void PatrolAndDetect()
     {
         float distance = Vector3.Distance(transform.position, player.position);
         playerInRange = distance <= detectionRange;
 
-        if (playerInRange)
+        if (playerInRange && !isLosing)
         {
-            if (!alertUI.activeSelf)
-                alertUI.SetActive(true); 
+            Vector3 lookDirection = player.position - transform.position;
+            lookDirection.y = 0f;
+            Quaternion rotation = Quaternion.LookRotation(lookDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2f);
+
             detectionTimer += Time.deltaTime;
-            alertSlider.value = detectionTimer / timeToCatch;
+
+            if (fillImage != null)
+                fillImage.fillAmount = detectionTimer / timeToCatch;
 
             if (detectionTimer >= timeToCatch)
             {
+                isLosing = true;
+
                 if (catchSound != null)
                     catchSound.Play();
 
-                SceneManager.LoadScene("Lobby");
+                if (blackoutUI != null)
+                    blackoutUI.SetActive(true);
+
+                Invoke("LoadLobbyScene", 1.5f);
             }
         }
         else
         {
-            detectionTimer = Mathf.Max(0, detectionTimer - Time.deltaTime); // يقل إذا ابتعد اللاعب
-            alertSlider.value = detectionTimer / timeToCatch;
+            detectionTimer = Mathf.Max(0f, detectionTimer - Time.deltaTime);
 
-            if (detectionTimer <= 0.01f && alertUI.activeSelf)
-                alertUI.SetActive(false); 
+            if (fillImage != null)
+                fillImage.fillAmount = detectionTimer / timeToCatch;
+
+            if (!playerInRange && patrolPoints.Length > 0)
+                Patrol();
         }
     }
 
     void Patrol()
     {
-        if (patrolPoints.Length == 0 || playerInRange) return;
-
         Transform targetPoint = patrolPoints[currentPoint];
         transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, speed * Time.deltaTime);
 
@@ -80,5 +95,10 @@ public class EnemyPatrolAndSight : MonoBehaviour
         {
             currentPoint = (currentPoint + 1) % patrolPoints.Length;
         }
+    }
+
+    void LoadLobbyScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }
