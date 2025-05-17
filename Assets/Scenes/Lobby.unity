@@ -445,6 +445,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 487254, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 441578508}
+    - targetCorrespondingSourceObject: {fileID: 487254, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1437857452}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100006, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       insertIndex: -1
@@ -12782,6 +12785,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 25249657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1437857451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1437857452}
+  - component: {fileID: 1437857453}
+  m_Layer: 0
+  m_Name: KunaiSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1437857452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437857451}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 25249658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1437857453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437857451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c068b36675c67184482b1da5789a29c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHand: {fileID: 8140640629305986322}
+  rightHandPalm: {fileID: 1437857452}
+  teleportKunaiPrefab: {fileID: 3949803572631313430, guid: 1ad8de8f5fbf1b1449f390e881ae2300, type: 3}
+  decoyKunaiPrefab: {fileID: 2301868322270997476, guid: 9ed4345dffa1d5643ba885e453d0d2e7, type: 3}
+  fireKunaiPrefab: {fileID: 4197838162785201569, guid: 3675fe81f1fe97d42b556ae53d4032eb, type: 3}
 --- !u!1001 &1449653902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14808,6 +14860,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: eeea2f23630733142b9196c476fd8289, type: 3}
       propertyPath: m_Name
       value: SM_Kunai 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eeea2f23630733142b9196c476fd8289, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: eeea2f23630733142b9196c476fd8289, type: 3}
       propertyPath: m_TagString
