@@ -18,7 +18,7 @@ public class TeleportKunai : MonoBehaviour
         }
 
         // Add upward offset to avoid getting stuck in floor
-        Vector3 teleportPosition = transform.position + Vector3.up * 1.5f;
+        Vector3 teleportPosition = transform.position + Vector3.up * 0.5f;
 
         // Move the entire rig
         rigRoot.transform.position = teleportPosition;

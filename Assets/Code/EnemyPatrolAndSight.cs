@@ -11,12 +11,16 @@ public class EnemyPatrolAndSight : MonoBehaviour
     public float timeToCatch = 5f;
     public GameObject blackoutUI;
     public AudioSource catchSound;
-    public Image fillImage; 
+    public Image fillImage;
+
+    public float decoyDetectionRange = 10f;
 
     private int currentPoint = 0;
     private float detectionTimer = 0f;
     private bool playerInRange = false;
     private bool isLosing = false;
+
+    private GameObject currentDecoyTarget;
 
     void Start()
     {
@@ -34,17 +38,36 @@ public class EnemyPatrolAndSight : MonoBehaviour
 
     void Update()
     {
+        FindNearestDecoy();
         PatrolAndDetect();
+    }
+
+    void FindNearestDecoy()
+    {
+        GameObject[] decoys = GameObject.FindGameObjectsWithTag("Decoy");
+        float closestDistance = Mathf.Infinity;
+        currentDecoyTarget = null;
+
+        foreach (GameObject decoy in decoys)
+        {
+            float dist = Vector3.Distance(transform.position, decoy.transform.position);
+            if (dist < decoyDetectionRange && dist < closestDistance)
+            {
+                closestDistance = dist;
+                currentDecoyTarget = decoy;
+            }
+        }
     }
 
     void PatrolAndDetect()
     {
-        float distance = Vector3.Distance(transform.position, player.position);
+        Transform target = currentDecoyTarget != null ? currentDecoyTarget.transform : player;
+        float distance = Vector3.Distance(transform.position, target.position);
         playerInRange = distance <= detectionRange;
 
         if (playerInRange && !isLosing)
         {
-            Vector3 lookDirection = player.position - transform.position;
+            Vector3 lookDirection = target.position - transform.position;
             lookDirection.y = 0f;
             Quaternion rotation = Quaternion.LookRotation(lookDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2f);
