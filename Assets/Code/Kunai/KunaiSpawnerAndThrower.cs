@@ -116,7 +116,7 @@ public class KunaiSpawnerAndThrower : MonoBehaviour
             kunaiRb.isKinematic = false;
 
             // Apply hand velocity for throw
-            kunaiRb.linearVelocity = handVelocity;
+            kunaiRb.linearVelocity = handVelocity * 5f;
             kunaiRb.angularVelocity = Vector3.zero;
         }
 
