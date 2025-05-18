@@ -5,9 +5,9 @@ public class KunaiSpawnerAndThrower : MonoBehaviour
     public OVRHand rightHand;               // Assign right hand OVRHand here in inspector
     public Transform rightHandPalm;         // Assign palm or wrist transform for spawn position
 
-    public GameObject teleportKunaiPrefab; // Assign teleport kunai prefab here
-    public GameObject decoyKunaiPrefab;    // Assign decoy kunai prefab here
-    public GameObject fireKunaiPrefab;     // Assign fire kunai prefab here
+    public GameObject teleportKunaiPrefab;  // Assign teleport kunai prefab here
+    public GameObject decoyKunaiPrefab;     // Assign decoy kunai prefab here
+    public GameObject fireKunaiPrefab;      // Assign fire kunai prefab here
 
     private GameObject currentKunai = null;
     private Rigidbody kunaiRb = null;
@@ -38,11 +38,8 @@ public class KunaiSpawnerAndThrower : MonoBehaviour
         bool ringPinch = rightHand.GetFingerIsPinching(OVRHand.HandFinger.Ring);
         bool thumbPinch = rightHand.GetFingerIsPinching(OVRHand.HandFinger.Thumb);
 
-        // Debug pinch states
-        Debug.Log($"Pinches - Index: {indexPinch}, Middle: {middlePinch}, Ring: {ringPinch}, Thumb: {thumbPinch}");
-
-        // Check gestures
-        bool teleportGesture = indexPinch && !middlePinch && !ringPinch && thumbPinch == false;
+        // Check gestures (relaxed conditions for better reliability)
+        bool teleportGesture = indexPinch && !middlePinch;
         bool decoyGesture = thumbPinch && middlePinch && !ringPinch && !indexPinch;
         bool fireGesture = thumbPinch && ringPinch && !middlePinch && !indexPinch;
 

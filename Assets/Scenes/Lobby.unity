@@ -1403,7 +1403,7 @@ GameObject:
   - component: {fileID: 161438795}
   m_Layer: 0
   m_Name: FLOOR
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2358,6 +2358,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: woodFloor2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6351a59a06ee4264288cc215a0b2c6d4, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2521,6 +2525,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
       propertyPath: m_Name
       value: FloorFrameBig (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2701,7 +2709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1737576041100962275, guid: e25ca118e85a90c408d18732758ba7aa, type: 3}
       propertyPath: m_Name
-      value: OVRCameraRig Variant
+      value: OVRCameraRig
       objectReference: {fileID: 0}
     - target: {fileID: 1737576041101033633, guid: e25ca118e85a90c408d18732758ba7aa, type: 3}
       propertyPath: m_TagString
@@ -2717,9 +2725,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1737576041100836881, guid: e25ca118e85a90c408d18732758ba7aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2030505125}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e25ca118e85a90c408d18732758ba7aa, type: 3}
+--- !u!114 &320575005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 358540132053014764, guid: e25ca118e85a90c408d18732758ba7aa, type: 3}
+  m_PrefabInstance: {fileID: 320575004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7623a8f0b49cf4dbaa40aea4d4be64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &320575006 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1737576041100836881, guid: e25ca118e85a90c408d18732758ba7aa, type: 3}
+  m_PrefabInstance: {fileID: 320575004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &324113629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3054,6 +3081,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorFrameBig (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3131,6 +3162,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
       propertyPath: m_Name
       value: FloorFrameBig (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5769,6 +5804,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: woodFloor2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6351a59a06ee4264288cc215a0b2c6d4, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6087,6 +6126,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorFrameBig (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6385,6 +6428,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
       propertyPath: m_Name
       value: FloorFrameBig (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7013,6 +7060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorFrameBig (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7090,6 +7141,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
       propertyPath: m_Name
       value: FloorFrameBig
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8177,6 +8232,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorFrameBig (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8254,6 +8313,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
       propertyPath: m_Name
       value: FloorFrameBig (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10577,6 +10640,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: woodFloor2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6351a59a06ee4264288cc215a0b2c6d4, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10654,6 +10721,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
       propertyPath: m_Name
       value: FloorFrameBig (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12793,6 +12864,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
       propertyPath: m_Name
       value: FloorFrameBig (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15865,6 +15940,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorFrameBig (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16313,6 +16392,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
       propertyPath: m_Name
       value: FloorFrameBig (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853428de75caeb44fb6c4138b42f6fcb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17055,6 +17138,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 694a888c4c4a5c6489e9d3346cdb5be9, type: 3}
   m_PrefabInstance: {fileID: 2025667100}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2030505124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2030505125}
+  - component: {fileID: 2030505126}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2030505125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030505124}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 320575006}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2030505126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030505124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c068b36675c67184482b1da5789a29c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHand: {fileID: 320575005}
+  rightHandPalm: {fileID: 2030505125}
+  teleportKunaiPrefab: {fileID: 3949803572631313430, guid: 1ad8de8f5fbf1b1449f390e881ae2300, type: 3}
+  decoyKunaiPrefab: {fileID: 0}
+  fireKunaiPrefab: {fileID: 0}
 --- !u!1001 &2054743596
 PrefabInstance:
   m_ObjectHideFlags: 0

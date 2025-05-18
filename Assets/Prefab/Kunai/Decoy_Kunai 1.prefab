@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4439236143073085100}
   - component: {fileID: 735369138179754249}
   - component: {fileID: 3301271688732065219}
-  - component: {fileID: 6564089645417317623}
   - component: {fileID: 8896042176733600247}
   - component: {fileID: 472046820724516905}
+  - component: {fileID: 6398283867135401920}
   m_Layer: 0
-  m_Name: Teleport_Kunai
+  m_Name: Decoy_Kunai 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,18 +90,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6564089645417317623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3949803572631313430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea555510a609da048a4bbdfc53fcff3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &8896042176733600247
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,6 +138,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5201604, y: 1.2323604, z: 6.112232}
   m_Center: {x: -0.0000017881393, y: 0.0000064373016, z: 1.7516278}
+--- !u!114 &6398283867135401920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3949803572631313430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10fae4114f39774f8e98cc951d407b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decoyCharacterPrefab: {fileID: 0}
+  decoyDuration: 5
+  player: {fileID: 0}
 --- !u!1 &5313183902928148154
 GameObject:
   m_ObjectHideFlags: 0
