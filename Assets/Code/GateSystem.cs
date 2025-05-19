@@ -40,7 +40,7 @@ public class GateSystem : MonoBehaviour
 
     void UpdateGateUI()
     {
-        gateUIText.text = $"Collected: {collectedItems} / {totalItems}";
+        gateUIText.text = $"You need to Collect {totalItems} To Win! You have {collectedItems}  ";
     }
 
     void OpenGate()
