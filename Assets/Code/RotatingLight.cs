@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class RotatingLight : MonoBehaviour
 {
-     public float moveDistance = 5f;
+     public float moveDistance = 2f;
     public float moveSpeed = 2f;
     public AudioSource loseSound;
 
