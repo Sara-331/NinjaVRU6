@@ -110391,7 +110391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34d89277cb0dfaa4ba3a1d04f039b88a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22
+      value: 22.165
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34d89277cb0dfaa4ba3a1d04f039b88a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -110494,8 +110494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectSound: {fileID: 7503273141619020891}
---- !u!65 &2111206544
-BoxCollider:
+--- !u!136 &2111206544
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110512,9 +110512,11 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.26969486, y: 0.14615968, z: 0.6611377}
-  m_Center: {x: 0.36515245, y: -0.42691895, z: -0.16943115}
+  serializedVersion: 2
+  m_Radius: 0.31950426
+  m_Height: 0.6390085
+  m_Direction: 1
+  m_Center: {x: 0.18049574, y: 0.1351835, z: 0}
 --- !u!1001 &2112019745
 PrefabInstance:
   m_ObjectHideFlags: 0

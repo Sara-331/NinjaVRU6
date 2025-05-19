@@ -21237,6 +21237,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightTrigger (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 2163910098523059568, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4355597510771520143, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.47473
@@ -24730,6 +24734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightTrigger (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 2163910098523059568, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4355597510771520143, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.47473
@@ -28046,6 +28054,10 @@ PrefabInstance:
     - target: {fileID: 2163910098523059568, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
       propertyPath: m_Name
       value: LightTrigger (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163910098523059568, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4355597510771520143, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
       propertyPath: m_LocalScale.x
@@ -32015,6 +32027,10 @@ PrefabInstance:
     - target: {fileID: 2163910098523059568, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
       propertyPath: m_Name
       value: LightTrigger (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163910098523059568, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4355597510771520143, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
       propertyPath: m_LocalScale.x
@@ -42950,6 +42966,10 @@ PrefabInstance:
     - target: {fileID: 659407707875495781, guid: a04150d8a56c4744c980b4d0260cde88, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941531332072999561, guid: a04150d8a56c4744c980b4d0260cde88, type: 3}
+      propertyPath: m_Volume
+      value: 0.779
       objectReference: {fileID: 0}
     - target: {fileID: 7630992884365201388, guid: a04150d8a56c4744c980b4d0260cde88, type: 3}
       propertyPath: m_Name
@@ -70881,6 +70901,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightTrigger (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 2163910098523059568, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4355597510771520143, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.47473
@@ -91794,6 +91818,10 @@ PrefabInstance:
     - target: {fileID: 2163910098523059568, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
       propertyPath: m_Name
       value: LightTrigger (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163910098523059568, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4355597510771520143, guid: 6ae2338ace0b7f949a800b6c1528beb3, type: 3}
       propertyPath: m_LocalScale.x
