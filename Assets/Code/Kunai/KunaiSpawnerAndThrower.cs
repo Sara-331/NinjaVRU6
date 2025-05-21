@@ -40,8 +40,8 @@ public class KunaiSpawnerAndThrower : MonoBehaviour
 
         // Check gestures (relaxed conditions for better reliability)
         bool teleportGesture = indexPinch && !middlePinch;
-        bool decoyGesture = thumbPinch && middlePinch && !ringPinch && !indexPinch;
-        bool fireGesture = thumbPinch && ringPinch && !middlePinch && !indexPinch;
+        bool decoyGesture = middlePinch && !ringPinch && !indexPinch;
+        bool fireGesture = ringPinch && !middlePinch && !indexPinch;
 
         bool isPinchingAny = indexPinch || middlePinch || ringPinch || thumbPinch;
 
@@ -108,15 +108,23 @@ public class KunaiSpawnerAndThrower : MonoBehaviour
     {
         if (currentKunai == null) return;
 
-        // Detach from hand
+        // Detach kunai from hand
         currentKunai.transform.SetParent(null);
 
         if (kunaiRb != null)
         {
             kunaiRb.isKinematic = false;
 
-            // Apply hand velocity for throw
-            kunaiRb.linearVelocity = handVelocity * 5f;
+            // Calculate throw velocity
+            Vector3 throwVelocity = handVelocity * 5f;
+
+            if (throwVelocity.magnitude < 0.1f)
+            {
+                // Add small forward push if hand velocity is too low
+                throwVelocity = rightHandPalm.forward * 2f;
+            }
+
+            kunaiRb.linearVelocity = throwVelocity;
             kunaiRb.angularVelocity = Vector3.zero;
         }
 

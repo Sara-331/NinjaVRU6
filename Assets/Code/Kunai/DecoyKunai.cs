@@ -3,61 +3,62 @@ using System.Collections;
 
 public class DecoyKunai : MonoBehaviour
 {
-    public GameObject decoyCharacterPrefab; // Assign decoy character prefab in inspector
-    public float decoyDuration = 5f;         // How long the decoy lasts
-    public GameObject player;                // Assign the player GameObject here
+    [Header("Assign in Inspector")]
+    public GameObject decoyCharacterPrefab;   // The decoy to spawn
+    public GameObject player;                 // The player GameObject
+    public float decoyDuration = 5f;          // Duration decoy lasts
 
     private bool hasTriggered = false;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (hasTriggered) return;
+        hasTriggered = true;
 
-        // Only trigger on ground or suitable surfaces
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        Debug.Log("Decoy Kunai hit: " + collision.gameObject.name);
+
+        // Spawn decoy at impact location
+        if (decoyCharacterPrefab != null)
         {
-            hasTriggered = true;
-
-            // Spawn decoy character at kunai position
             Instantiate(decoyCharacterPrefab, transform.position, Quaternion.identity);
-
-            // Start decoy effect coroutine
-            StartCoroutine(DecoyEffect());
-
-            // Destroy kunai object after spawning decoy
-            Destroy(gameObject);
         }
+
+        // Start decoy effect coroutine
+        if (player != null)
+        {
+            StartCoroutine(DecoyEffect());
+        }
+
+        // Destroy the kunai after a short delay (to avoid instant pop)
+        Destroy(gameObject, 0.2f);
     }
 
     private IEnumerator DecoyEffect()
     {
-        if (player != null)
-        {
-            // Disable player tag (to hide or stop interactions)
-            player.tag = "Untagged";
+        // Temporarily hide the player
+        SetPlayerVisibility(false);
+        player.tag = "Untagged";
 
-            // Optionally disable player renderer or collider here for invisibility
-            SetPlayerVisibility(false);
+        yield return new WaitForSeconds(decoyDuration);
 
-            // Wait for duration
-            yield return new WaitForSeconds(decoyDuration);
-
-            // Re-enable player tag
-            player.tag = "Player";
-
-            SetPlayerVisibility(true);
-        }
+        // Re-enable player visibility and tag
+        SetPlayerVisibility(true);
+        player.tag = "Player";
     }
 
     private void SetPlayerVisibility(bool visible)
     {
-        // Example: disable all renderers on player for invisibility
         Renderer[] renderers = player.GetComponentsInChildren<Renderer>();
         foreach (Renderer r in renderers)
         {
             r.enabled = visible;
         }
 
-        // You can also disable colliders or other components here if needed
+        // Optional: disable colliders if needed
+        Collider[] colliders = player.GetComponentsInChildren<Collider>();
+        foreach (Collider c in colliders)
+        {
+            c.enabled = visible;
+        }
     }
 }

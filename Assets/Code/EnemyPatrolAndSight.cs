@@ -1,26 +1,26 @@
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class EnemyPatrolAndSight : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
-    public Transform[] patrolPoints;
-    public float speed = 2f;
+    public NavMeshAgent agent;
     public Transform player;
-    public float detectionRange = 2f;
+    public float visionDistance = 10f;
+    public float detectionRange = 1f;
     public float timeToCatch = 5f;
+
     public GameObject blackoutUI;
     public AudioSource catchSound;
     public Image fillImage;
 
-    public float decoyDetectionRange = 10f;
+    private bool isDistracted = false;
+    private float distractTimer = 0f;
+    private Vector3 decoyPosition;
 
-    private int currentPoint = 0;
     private float detectionTimer = 0f;
-    private bool playerInRange = false;
     private bool isLosing = false;
-
-    private GameObject currentDecoyTarget;
 
     void Start()
     {
@@ -38,90 +38,75 @@ public class EnemyPatrolAndSight : MonoBehaviour
 
     void Update()
     {
-        FindNearestDecoy();
-        PatrolAndDetect();
-    }
+        if (isLosing || player == null) return;
 
-    void FindNearestDecoy()
-    {
-        GameObject[] decoys = GameObject.FindGameObjectsWithTag("Decoy");
-        float closestDistance = Mathf.Infinity;
-        currentDecoyTarget = null;
-
-        foreach (GameObject decoy in decoys)
+        if (isDistracted)
         {
-            float dist = Vector3.Distance(transform.position, decoy.transform.position);
-            if (dist < decoyDetectionRange && dist < closestDistance)
+            distractTimer -= Time.deltaTime;
+            if (distractTimer <= 0)
             {
-                closestDistance = dist;
-                currentDecoyTarget = decoy;
+                isDistracted = false;
+            }
+            else
+            {
+                agent.SetDestination(decoyPosition);
+                return;
             }
         }
-    }
 
-    void PatrolAndDetect()
-    {
-        Transform target = currentDecoyTarget != null ? currentDecoyTarget.transform : player;
-        float distance = Vector3.Distance(transform.position, target.position);
-        playerInRange = distance <= detectionRange;
+        float distance = Vector3.Distance(transform.position, player.position);
 
-        if (playerInRange && !isLosing)
+        if (distance <= detectionRange)
         {
-            Vector3 lookDirection = target.position - transform.position;
-            lookDirection.y = 0f;
-            Quaternion rotation = Quaternion.LookRotation(lookDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2f);
+            // Catch logic
+            agent.isStopped = true;
+            FaceTarget(player);
 
             detectionTimer += Time.deltaTime;
-
             if (fillImage != null)
                 fillImage.fillAmount = detectionTimer / timeToCatch;
 
-            if (detectionTimer >= timeToCatch)
+            if (detectionTimer >= timeToCatch && !isLosing)
             {
                 isLosing = true;
-
-                if (catchSound != null)
-                    catchSound.Play();
-
-                if (blackoutUI != null)
-                    blackoutUI.SetActive(true);
-
+                if (catchSound != null) catchSound.Play();
+                if (blackoutUI != null) blackoutUI.SetActive(true);
                 Invoke("LoadLobbyScene", 1.5f);
             }
         }
-        else
+        else if (distance <= visionDistance)
         {
+            // Chase player
+            agent.isStopped = false;
+            agent.SetDestination(player.position);
             detectionTimer = Mathf.Max(0f, detectionTimer - Time.deltaTime);
-
             if (fillImage != null)
                 fillImage.fillAmount = detectionTimer / timeToCatch;
-
-            if (!playerInRange && patrolPoints.Length > 0)
-                Patrol();
         }
     }
 
-    void Patrol()
+    public void DistractWithDecoy(Vector3 position, float duration)
     {
-        Transform targetPoint = patrolPoints[currentPoint];
-        transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, speed * Time.deltaTime);
+        isDistracted = true;
+        distractTimer = duration;
+        decoyPosition = position;
+        agent.SetDestination(position);
+        Debug.Log($"{gameObject.name} is distracted by decoy.");
+    }
 
-        Vector3 dir = targetPoint.position - transform.position;
-        if (dir != Vector3.zero)
+    void FaceTarget(Transform target)
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        direction.y = 0f;
+        if (direction != Vector3.zero)
         {
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-        }
-
-        if (Vector3.Distance(transform.position, targetPoint.position) < 0.2f)
-        {
-            currentPoint = (currentPoint + 1) % patrolPoints.Length;
         }
     }
 
     void LoadLobbyScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0); // Or use a named scene like SceneManager.LoadScene("Lobby");
     }
 }
