@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public float visionDistance = 10f;
-    public float detectionRange = 1f;
+    public float detectionRange = 5f;
     public float timeToCatch = 5f;
 
     public GameObject blackoutUI;
@@ -107,6 +107,6 @@ public class EnemyAI : MonoBehaviour
 
     void LoadLobbyScene()
     {
-        SceneManager.LoadScene(0); // Or use a named scene like SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("Lobby"); 
     }
 }
