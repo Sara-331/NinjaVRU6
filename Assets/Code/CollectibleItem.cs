@@ -1,20 +1,17 @@
 using UnityEngine;
 
-public class CollectableItem : MonoBehaviour
+public class CollectibleItem : MonoBehaviour
 {
-    public AudioSource collectSound;
+    public DoorTeleportOnCollect doorManager;
 
-    void OnTriggerEnter(Collider other)
+    private bool collected = false;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!collected && other.CompareTag("Player"))
         {
-            if (collectSound != null)
-                collectSound.Play();
-
-            GateSystem gateSystem = FindObjectOfType<GateSystem>();
-            if (gateSystem != null)
-                gateSystem.CollectItem();
-
+            collected = true;
+            doorManager.CollectItem();
             Destroy(gameObject);
         }
     }
