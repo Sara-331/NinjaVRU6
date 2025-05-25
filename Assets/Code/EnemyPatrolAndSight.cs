@@ -11,6 +11,9 @@ public class EnemyAI : MonoBehaviour
     public float detectionRange = 5f;
     public float timeToCatch = 5f;
 
+    public float roamRadius = 10f;
+    public float roamInterval = 4f;
+
     public GameObject blackoutUI;
     public AudioSource catchSound;
     public Image fillImage;
@@ -22,8 +25,21 @@ public class EnemyAI : MonoBehaviour
     private float detectionTimer = 0f;
     private bool isLosing = false;
 
+    private Vector3 lastDestination;
+    private float destinationThreshold = 0.5f;
+
+    private float roamTimer = 0f;
+    private float defaultSpeed = 3.5f;
+    private float defaultAcceleration = 8f;
+
     void Start()
     {
+        if (agent != null)
+        {
+            agent.speed = defaultSpeed;
+            agent.acceleration = defaultAcceleration;
+        }
+
         if (blackoutUI != null)
         {
             blackoutUI.SetActive(false);
@@ -34,11 +50,15 @@ public class EnemyAI : MonoBehaviour
 
         if (fillImage != null)
             fillImage.fillAmount = 0f;
+
+        lastDestination = transform.position;
     }
 
     void Update()
     {
-        if (isLosing || player == null) return;
+        if (isLosing || player == null || agent == null) return;
+
+        float distance = Vector3.Distance(transform.position, player.position);
 
         if (isDistracted)
         {
@@ -49,18 +69,17 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                agent.SetDestination(decoyPosition);
+                UpdateDestination(decoyPosition);
                 return;
             }
         }
 
-        float distance = Vector3.Distance(transform.position, player.position);
-
         if (distance <= detectionRange)
         {
-            // Catch logic
             agent.isStopped = true;
-            FaceTarget(player);
+
+            if (agent.velocity.magnitude < 0.1f)
+                FaceTarget(player);
 
             detectionTimer += Time.deltaTime;
             if (fillImage != null)
@@ -76,12 +95,44 @@ public class EnemyAI : MonoBehaviour
         }
         else if (distance <= visionDistance)
         {
-            // Chase player
             agent.isStopped = false;
-            agent.SetDestination(player.position);
+
             detectionTimer = Mathf.Max(0f, detectionTimer - Time.deltaTime);
             if (fillImage != null)
                 fillImage.fillAmount = detectionTimer / timeToCatch;
+
+            UpdateDestination(player.position);
+        }
+        else
+        {
+            RoamRandomly();
+        }
+    }
+
+    void RoamRandomly()
+    {
+        roamTimer -= Time.deltaTime;
+
+        if (roamTimer <= 0f)
+        {
+            Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
+            randomDirection += transform.position;
+
+            if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, roamRadius, NavMesh.AllAreas))
+            {
+                UpdateDestination(hit.position);
+            }
+
+            roamTimer = roamInterval;
+        }
+    }
+
+    void UpdateDestination(Vector3 targetPosition)
+    {
+        if (Vector3.Distance(lastDestination, targetPosition) > destinationThreshold)
+        {
+            agent.SetDestination(targetPosition);
+            lastDestination = targetPosition;
         }
     }
 
@@ -90,7 +141,8 @@ public class EnemyAI : MonoBehaviour
         isDistracted = true;
         distractTimer = duration;
         decoyPosition = position;
-        agent.SetDestination(position);
+        agent.isStopped = false;
+        UpdateDestination(decoyPosition);
         Debug.Log($"{gameObject.name} is distracted by decoy.");
     }
 
@@ -98,15 +150,16 @@ public class EnemyAI : MonoBehaviour
     {
         Vector3 direction = (target.position - transform.position).normalized;
         direction.y = 0f;
-        if (direction != Vector3.zero)
+
+        if (direction.magnitude > 0.01f)
         {
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 3f);
         }
     }
 
     void LoadLobbyScene()
     {
-        SceneManager.LoadScene("Lobby"); 
+        SceneManager.LoadScene("Lobby");
     }
 }
